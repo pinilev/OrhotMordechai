@@ -6,10 +6,10 @@
     <title>ישיבת אֹרְחוֹת מָרְדְּכַי - לאורו של מרן הרב מרדכי אליהו זצוק"ל</title>
     <!-- טעינת Tailwind CSS לעיצוב רספונסיבי ומודרני -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- טעינת גופנים בעברית: Heebo לטקסט שוטף ו-Frank Ruhl Libre לכותרות יוקרתיות -->
+    <!-- טעינת גופנים חדשים בעברית: Assistant לטקסט שוטף ו-David Libre לכותרות ישיבתיות יוקרתיות -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=David+Libre:wght@500;700&display=swap" rel="stylesheet">
     <!-- אייקונים מבית Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -18,17 +18,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Heebo', 'sans-serif'],
-                        serif: ['"Frank Ruhl Libre"', 'serif'],
+                        sans: ['Assistant', 'sans-serif'],
+                        serif: ['"David Libre"', 'serif'],
                     },
                     colors: {
                         yeshiva: {
-                            navy: '#12385b',     // כחול עמוק המותאם ללוגו ישיבת ארחות מרדכי
-                            sky: '#e0f2fe',      // תכלת שמיים עדין בהשראת רקע הלוגו
-                            gold: '#c59b27',     // זהב עתיק - מסמל כתר תורה, מצוינות ומסורת
-                            goldLight: '#f3e8c8',
-                            sand: '#f8fafc',     // רקע בהיר, נקי ומואר
-                            slate: '#334155'
+                            navy: '#3d1522',     // בורדו-ארגמן מלכותי עמוק (מחליף את הכחול הישן)
+                            sky: '#f4ece1',      // גוון קלף חם ועדין
+                            gold: '#b8860b',     // זהב עתיק עשיר (DarkGoldenrod)
+                            goldLight: '#f6ebd2',
+                            sand: '#faf7f2',     // רקע שמנת-פנינה חמים
+                            slate: '#2c2523',
+                            olive: '#2d3b2c'     // ירוק-זית עמוק להדגשות משלימות
                         }
                     }
                 }
@@ -38,15 +39,15 @@
     <style>
         /* סגנונות מיוחדים למצב עריכה */
         .edit-mode-active [data-editable="true"] {
-            outline: 2px dashed #c59b27;
+            outline: 2px dashed #b8860b;
             outline-offset: 4px;
             border-radius: 6px;
-            background-color: rgba(197, 155, 39, 0.08);
+            background-color: rgba(184, 134, 11, 0.08);
             cursor: text;
             transition: all 0.2s ease;
         }
         .edit-mode-active [data-editable="true"]:focus {
-            outline: 2px solid #0f294a;
+            outline: 2px solid #3d1522;
             background-color: #ffffff;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
@@ -110,38 +111,40 @@
             </div>
 
             <div class="mt-6 flex justify-end gap-2">
-                <button onclick="closeImageModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-medium">ביטול</button>
-                <button onclick="saveImageChange()" class="px-5 py-2 rounded-xl bg-yeshiva-navy text-white hover:bg-slate-800 font-bold shadow-md">עדכן תמונה</button>
+                <button onclick="closeImageModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-medium text-sm transition">ביטול</button>
+                <button onclick="saveImageChange()" class="px-5 py-2 rounded-xl bg-yeshiva-navy hover:bg-[#521c2e] text-white font-bold text-sm shadow-md transition">שמור תמונה</button>
             </div>
         </div>
     </div>
 
-    <!-- תפריט ניווט עליון (Navbar) -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <!-- תפריט ניווט עליון מעוצב מחדש (Navbar) -->
+    <header class="sticky top-0 z-40 bg-[#faf7f2]/95 backdrop-blur-md border-b border-amber-900/15 shadow-sm">
+        <!-- פס עיטור עליון דק בגוון ארגמן וזהב -->
+        <div class="h-1.5 w-full bg-gradient-to-l from-yeshiva-navy via-yeshiva-gold to-yeshiva-olive"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
                 <!-- באנר לוגו ישיבת ארחות מרדכי -->
                 <div class="flex items-center gap-3">
-                    <div class="relative group h-16 sm:h-20 rounded-xl bg-gradient-to-l from-sky-100/80 via-sky-50 to-white border border-sky-200/80 shadow-xs overflow-hidden cursor-pointer flex items-center" onclick="openImageModal('logo-img')">
+                    <div class="relative group h-16 sm:h-20 rounded-2xl bg-gradient-to-l from-yeshiva-goldLight/60 via-white to-yeshiva-sky border border-yeshiva-gold/30 shadow-xs overflow-hidden cursor-pointer flex items-center" onclick="openImageModal('logo-img')">
                         <img id="logo-img" src="orhot-mordechai-logo.png" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden');" alt="לוגו ישיבת אֹרְחוֹת מָרְדְּכַי" class="h-full w-auto object-contain">
                         
                         <!-- תצוגה מעוצבת תואמת ללוגו במקרה שהקובץ טרם נטען -->
-                        <div id="logo-fallback" class="hidden flex items-center gap-3 px-4 py-1.5 h-full bg-gradient-to-l from-sky-200/60 via-sky-50 to-white">
+                        <div id="logo-fallback" class="hidden flex items-center gap-3 px-4 py-1.5 h-full bg-gradient-to-l from-yeshiva-goldLight/70 via-white to-yeshiva-sky">
                             <div class="w-12 h-14 rounded-lg bg-yeshiva-navy/10 border border-yeshiva-navy/20 flex flex-col items-center justify-center text-yeshiva-navy text-[10px] font-bold text-center leading-tight shrink-0">
                                 <i data-lucide="image" class="w-4 h-4 mb-0.5 text-yeshiva-navy"></i>
                                 <span>דיוקן<br>הרב</span>
                             </div>
-                            <div class="text-yeshiva-navy font-serif font-black text-base sm:text-lg leading-[1.15] tracking-tight">
+                            <div class="text-yeshiva-navy font-serif font-bold text-lg sm:text-xl leading-[1.1] tracking-tight">
                                 ישיבת<br>אֹרְחוֹת<br>מָרְדְּכַי
                             </div>
-                            <div class="border-y-2 border-yeshiva-navy/60 py-1 px-2 text-yeshiva-navy text-[11px] sm:text-xs leading-tight text-center font-medium">
-                                <span class="font-bold block">ישיבה קטנה</span>
+                            <div class="border-y-2 border-yeshiva-gold py-1 px-2 text-yeshiva-slate text-[11px] sm:text-xs leading-tight text-center font-medium">
+                                <span class="font-bold text-yeshiva-navy block">ישיבה קטנה</span>
                                 לאורו של מרן<br>
-                                <span class="font-bold">הרב מרדכי אליהו</span> זצוק"ל
+                                <span class="font-bold text-yeshiva-navy">הרב מרדכי אליהו</span> זצוק"ל
                             </div>
                         </div>
 
-                        <div class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/75 flex items-center justify-center transition">
+                        <div class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/80 flex items-center justify-center transition">
                             <span class="text-white text-xs font-bold flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg">
                                 <i data-lucide="camera" class="w-4 h-4 text-yeshiva-gold"></i>
                                 <span>העלה / החלף לוגו</span>
@@ -151,88 +154,92 @@
                 </div>
 
                 <!-- קישורי ניווט (דסקטופ) -->
-                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <nav class="hidden md:flex items-center gap-6 text-[15px] font-semibold text-stone-700">
                     <a href="#about" class="hover:text-yeshiva-navy transition">אודות הישיבה</a>
                     <a href="#pillars" class="hover:text-yeshiva-navy transition">דרכה של הישיבה</a>
                     <a href="#videos" class="hover:text-yeshiva-navy transition">סרטונים</a>
                     <a href="#rosh-yeshiva" class="hover:text-yeshiva-navy transition">דבר ראש הישיבה</a>
                     <a href="#gallery" class="hover:text-yeshiva-navy transition">הווי וגלריה</a>
-                    <a href="https://www.jgive.com/new/he/ils/charity-organizations/10908" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-yeshiva-goldLight/80 hover:bg-yeshiva-gold text-yeshiva-navy border border-yeshiva-gold/50 px-4 py-2 rounded-xl transition font-bold">
+                    <a href="https://www.jgive.com/new/he/ils/charity-organizations/10908" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-yeshiva-goldLight hover:bg-yeshiva-gold text-yeshiva-navy hover:text-white border border-yeshiva-gold/50 px-4 py-2 rounded-full transition font-bold">
                         <i data-lucide="heart-handshake" class="w-4 h-4"></i>
                         <span>תרומה לישיבה</span>
                     </a>
-                    <a href="#contact" class="bg-yeshiva-navy text-white px-5 py-2.5 rounded-xl hover:bg-slate-800 transition shadow-sm font-bold">רישום ויצירת קשר</a>
+                    <a href="#contact" class="bg-yeshiva-navy text-yeshiva-sky px-5 py-2.5 rounded-full hover:bg-[#521c2e] transition shadow-sm font-bold">רישום ויצירת קשר</a>
                 </nav>
 
                 <!-- כפתור תפריט למובייל -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100">
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-yeshiva-navy hover:bg-yeshiva-goldLight/50">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
 
         <!-- תפריט מובייל נפתח -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-6 space-y-2 shadow-lg">
-            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">אודות הישיבה</a>
-            <a href="#pillars" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">דרכה של הישיבה</a>
-            <a href="#videos" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">סרטונים</a>
-            <a href="#rosh-yeshiva" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">דבר ראש הישיבה</a>
-            <a href="#gallery" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">הווי וגלריה</a>
-            <a href="https://www.jgive.com/new/he/ils/charity-organizations/10908" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="flex items-center justify-center gap-2 px-3 py-3 mt-2 rounded-xl text-center font-bold bg-yeshiva-gold text-yeshiva-navy">
+        <div id="mobile-menu" class="hidden md:hidden bg-[#faf7f2] border-t border-amber-900/10 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-semibold text-stone-700 hover:bg-yeshiva-goldLight/40">אודות הישיבה</a>
+            <a href="#pillars" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-semibold text-stone-700 hover:bg-yeshiva-goldLight/40">דרכה של הישיבה</a>
+            <a href="#videos" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-semibold text-stone-700 hover:bg-yeshiva-goldLight/40">סרטונים</a>
+            <a href="#rosh-yeshiva" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-semibold text-stone-700 hover:bg-yeshiva-goldLight/40">דבר ראש הישיבה</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-base font-semibold text-stone-700 hover:bg-yeshiva-goldLight/40">הווי וגלריה</a>
+            <a href="https://www.jgive.com/new/he/ils/charity-organizations/10908" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="flex items-center justify-center gap-2 px-3 py-3 mt-2 rounded-full text-center font-bold bg-yeshiva-gold text-white">
                 <i data-lucide="heart-handshake" class="w-5 h-5"></i>
                 <span>תרומה ושותפות (JGive)</span>
             </a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-3 mt-2 rounded-xl text-center font-bold bg-yeshiva-navy text-white">רישום ויצירת קשר</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-3 mt-2 rounded-full text-center font-bold bg-yeshiva-navy text-yeshiva-sky">רישום ויצירת קשר</a>
         </div>
     </header>
 
-    <!-- חלק 1: באנר ראשי (Hero Section) -->
-    <section class="relative bg-gradient-to-bl from-yeshiva-navy via-[#16446e] to-[#0d2842] text-white overflow-hidden">
-        <!-- עיטור רקע עדין בגווני תכלת וזהב -->
-        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <!-- חלק 1: באנר ראשי מעוצב מחדש (Hero Section) -->
+    <section class="relative bg-gradient-to-br from-[#2b0d17] via-yeshiva-navy to-[#253124] text-white overflow-hidden">
+        <!-- עיטור רקע עדין בסגנון גיאומטרי מסורתי -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5b94c_1.2px,transparent_1.2px)] [background-size:28px_28px]"></div>
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-yeshiva-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-yeshiva-olive/30 rounded-full blur-3xl pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
                 <!-- טקסט ראשי -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-400/15 border border-sky-300/30 text-sky-200 text-sm font-medium">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-200 text-sm font-semibold tracking-wide">
                         <i data-lucide="sparkles" class="w-4 h-4 text-yeshiva-gold"></i>
                         <span data-editable="true" id="hero-badge">ישיבה קטנה ציונית • כוכב השחר, ארץ בנימין</span>
                     </div>
                     
-                    <h1 data-editable="true" id="hero-title" class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white">
+                    <h1 data-editable="true" id="hero-title" class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] text-[#fdf8ef] drop-shadow-xs">
                         ישיבת אֹרְחוֹת מָרְדְּכַי
                     </h1>
                     
-                    <p data-editable="true" id="hero-subtitle" class="text-xl sm:text-2xl text-sky-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                    <div class="w-24 h-1 bg-yeshiva-gold mx-auto lg:mx-0 rounded-full"></div>
+                    
+                    <p data-editable="true" id="hero-subtitle" class="text-xl sm:text-2xl text-amber-100/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
                         ישיבה קטנה ציונית ביישוב כוכב השחר שבארץ בנימין הפועלת ברוח הראשון לציון מרן הרב מרדכי אליהו זצ"ל
                     </p>
                     
                     <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-yeshiva-gold hover:bg-amber-500 text-yeshiva-navy font-bold text-lg shadow-lg shadow-amber-900/20 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full bg-yeshiva-gold hover:bg-[#cf9910] text-white font-bold text-lg shadow-lg shadow-black/25 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
                             <span>לתיאום פגישת היכרות</span>
                             <i data-lucide="arrow-left" class="w-5 h-5"></i>
                         </a>
-                        <a href="https://www.jgive.com/new/he/ils/charity-organizations/10908" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-lg border border-yeshiva-gold/60 transition flex items-center justify-center gap-2">
+                        <a href="https://www.jgive.com/new/he/ils/charity-organizations/10908" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-[#fdf8ef] font-bold text-lg border border-amber-300/40 backdrop-blur-xs transition flex items-center justify-center gap-2">
                             <i data-lucide="heart-handshake" class="w-5 h-5 text-yeshiva-gold"></i>
                             <span>תרומה ושותפות</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- מקום לתמונה ראשית (Hero Image Placeholder) -->
+                <!-- מקום לתמונה ראשית מעוצבת כקשת/מסגרת יוקרתית -->
                 <div class="lg:col-span-5">
-                    <div class="relative group rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 aspect-[4/3] bg-slate-800">
-                        <img id="hero-img" src="https://placehold.co/800x600/1e3a5f/c59b27?text=תמונה+ראשית+של+הישיבה+%2F+בית+המדרש" alt="תמונת הישיבה" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <div class="relative group rounded-t-[4rem] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-yeshiva-gold/40 aspect-[4/3] bg-stone-900">
+                        <img id="hero-img" src="https://placehold.co/800x600/3d1522/f3e8c8?text=תמונה+ראשית+של+הישיבה+%2F+בית+המדרש" alt="תמונת הישיבה" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
                         
                         <!-- שכבת החלפת תמונה -->
-                        <div onclick="openImageModal('hero-img')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/80 backdrop-blur-xs flex flex-col items-center justify-center cursor-pointer transition duration-300 p-6 text-center">
-                            <div class="w-14 h-14 rounded-full bg-yeshiva-gold text-yeshiva-navy flex items-center justify-center mb-3 shadow-lg">
+                        <div onclick="openImageModal('hero-img')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/85 backdrop-blur-xs flex flex-col items-center justify-center cursor-pointer transition duration-300 p-6 text-center">
+                            <div class="w-14 h-14 rounded-full bg-yeshiva-gold text-white flex items-center justify-center mb-3 shadow-lg">
                                 <i data-lucide="image-plus" class="w-7 h-7"></i>
                             </div>
                             <span class="font-bold text-white text-lg">לחץ להחלפת תמונה ראשית</span>
-                            <span class="text-xs text-slate-300 mt-1">מומלץ: תמונה רוחבית של בית המדרש או התלמידים</span>
+                            <span class="text-xs text-amber-200 mt-1">מומלץ: תמונה רוחבית של בית המדרש או התלמידים</span>
                         </div>
                     </div>
                 </div>
@@ -245,20 +252,20 @@
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
         <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div class="p-2">
-                <div data-editable="true" id="stat-1-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">ט'–י"ב</div>
-                <div data-editable="true" id="stat-1-label" class="text-sm text-slate-500 mt-1 font-medium">ישיבה קטנה ארבע-שנתית</div>
+                <div data-editable="true" id="stat-1-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">50+</div>
+                <div data-editable="true" id="stat-1-label" class="text-sm text-slate-500 mt-1 font-medium">תלמידים בכיתות ט'–י"ב</div>
             </div>
             <div class="p-2 border-r border-slate-100">
-                <div data-editable="true" id="stat-2-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-gold">זרעים ומועד</div>
-                <div data-editable="true" id="stat-2-label" class="text-sm text-slate-500 mt-1 font-medium">דגש ייחודי בסדרי הלימוד</div>
+                <div data-editable="true" id="stat-2-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-gold">11+ מסכתות</div>
+                <div data-editable="true" id="stat-2-label" class="text-sm text-slate-500 mt-1 font-medium">הושלמו בעיון ובבקיאות</div>
             </div>
             <div class="p-2 lg:border-r border-slate-100">
-                <div data-editable="true" id="stat-3-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">100%</div>
-                <div data-editable="true" id="stat-3-label" class="text-sm text-slate-500 mt-1 font-medium">התמקדות בלימודי קודש</div>
+                <div data-editable="true" id="stat-3-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">זרעים ומועד</div>
+                <div data-editable="true" id="stat-3-label" class="text-sm text-slate-500 mt-1 font-medium">דגש ייחודי בסדרי הלימוד</div>
             </div>
             <div class="p-2 border-r border-slate-100">
-                <div data-editable="true" id="stat-4-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-gold">יחס אישי</div>
-                <div data-editable="true" id="stat-4-label" class="text-sm text-slate-500 mt-1 font-medium">ליווי צמוד של ר"מים</div>
+                <div data-editable="true" id="stat-4-num" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-gold">מניין ותיקין</div>
+                <div data-editable="true" id="stat-4-label" class="text-sm text-slate-500 mt-1 font-medium">ותוכנית לימוד ייחודית</div>
             </div>
         </div>
     </section>
@@ -269,7 +276,7 @@
             <!-- תמונה צדדית -->
             <div class="lg:col-span-5 order-2 lg:order-1">
                 <div class="relative group rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-slate-200 border-4 border-white">
-                    <img id="about-img" src="https://placehold.co/600x750/e0f2fe/12385b?text=תמונת+אווירה+%2F+לימוד+בבית+המדרש" alt="אודות ישיבת ארחות מרדכי" class="w-full h-full object-cover">
+                    <img id="about-img" src="https://placehold.co/600x750/e0f2fe/12385b?text=בית+המדרש+החדש+בכוכב+השחר" alt="אודות ישיבת ארחות מרדכי" class="w-full h-full object-cover">
                     <div onclick="openImageModal('about-img')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/75 flex flex-col items-center justify-center cursor-pointer transition p-4 text-center">
                         <i data-lucide="camera" class="w-10 h-10 text-yeshiva-gold mb-2"></i>
                         <span class="text-white font-bold">החלף תמונת אודות</span>
@@ -281,16 +288,16 @@
             <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
                 <span class="text-yeshiva-gold font-bold tracking-wider uppercase text-sm block">אודות ישיבת אֹרְחוֹת מָרְדְּכַי</span>
                 <h2 data-editable="true" id="about-title" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">
-                    לאורו של מרן הראשון לציון הרב מרדכי אליהו זצוק"ל
+                    להידבק באורו הגדול, בשקידתו ובשמחתו בלימוד התורה
                 </h2>
                 <div class="w-20 h-1.5 bg-gradient-to-l from-yeshiva-navy to-sky-400 rounded-full"></div>
                 
                 <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
                     <p data-editable="true" id="about-p1">
-                        ישיבת "אֹרְחוֹת מָרְדְּכַי" ביישוב כוכב השחר שבארץ בנימין היא ישיבה קטנה ציונית לכיתות ט'–י"ב, המוקדשת כולה לבניין קומתו הרוחנית והתורנית של הנער לאורו, תורתו ומידותיו של מרן הראשון לציון הרב מרדכי אליהו זצ"ל.
+                        ישיבת "אֹרְחוֹת מָרְדְּכַי" הוקמה מעידודם ובתמיכתם של הרב שמואל אליהו והרב יוסף אליהו שליט"א, בניו של מרן הראשון לציון הרב מרדכי אליהו זצ"ל שעל שמו נקראת הישיבה. הישיבה שוכנת ביישוב כוכב השחר שבארץ בנימין לצד הישיבה הגבוהה "נועם שיח", וזכתה למתחם חדש ומרווח הכולל בית מדרש, חדר אוכל וכיתות לימוד.
                     </p>
                     <p data-editable="true" id="about-p2">
-                        מסלול הלימודים בישיבה מתמקד בלימודי קודש מעמיקים ומקיפים – גמרא בעיון ובבקיאות, משנה, תנ"ך, אמונה, מוסר וחסידות – תוך שימת דגש ייחודי על סדרי זרעים ומועד, מתוך חיבור חי לארץ ישראל, למצוות התלויות בארץ ולמעגל השנה.
+                        בישיבה לומדים למעלה מ-50 תלמידים בכיתות ט'–י"ב המקדישים את שנות הנעורים לעמל התורה בטהרה – גמרא, משנה, תנ"ך, אמונה, מוסר וחסידות – עם דגש מיוחד על סדרי זרעים ומועד, מתוך חיבור עמוק לעם ישראל ולארצנו הקדושה. עד כה זכו התלמידים להשלים כבר יותר מ-11 מסכתות בעיון ובבקיאות.
                     </p>
                 </div>
 
@@ -298,20 +305,20 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                     <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
                         <div class="p-2 rounded-xl bg-yeshiva-goldLight text-yeshiva-navy shrink-0">
-                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <i data-lucide="sunrise" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h4 data-editable="true" id="feat-1-title" class="font-bold text-yeshiva-navy">סדרי זרעים ומועד</h4>
-                            <p data-editable="true" id="feat-1-desc" class="text-sm text-slate-500">דגש מיוחד בלימוד הגמרא והמשנה בסדרי זרעים ומועד מתוך חיבור לארץ ולתורה.</p>
+                            <h4 data-editable="true" id="feat-1-title" class="font-bold text-yeshiva-navy">מניין ותיקין ותוכנית לימוד</h4>
+                            <p data-editable="true" id="feat-1-desc" class="text-sm text-slate-500">שני מנייני שחרית מדי יום – וכשליש מהתלמידים משכימים למניין ותיקין מתוך זריזות ושמחה.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
                         <div class="p-2 rounded-xl bg-yeshiva-goldLight text-yeshiva-navy shrink-0">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            <i data-lucide="award" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h4 data-editable="true" id="feat-2-title" class="font-bold text-yeshiva-navy">בניין האישיות והרוח</h4>
-                            <p data-editable="true" id="feat-2-desc" class="text-sm text-slate-500">עמל תורה מתוך שמחה בשיעורי אמונה, תנ"ך, מוסר וחסידות לכיתות ט'–י"ב.</p>
+                            <h4 data-editable="true" id="feat-2-title" class="font-bold text-yeshiva-navy">בברכת גדולי ישראל</h4>
+                            <p data-editable="true" id="feat-2-desc" class="text-sm text-slate-500">מלווה בברכתם של הרב צבי טאו, הרב אביגדור נבנצל, הרב שמואל אליהו והרב יוסף אליהו שליט"א.</p>
                         </div>
                     </div>
                 </div>
@@ -324,8 +331,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <span class="text-yeshiva-gold font-bold tracking-wider uppercase text-sm">הדרך החינוכית שלנו</span>
-                <h2 data-editable="true" id="pillars-title" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">תוכנית הלימודים ורוח הישיבה</h2>
-                <p data-editable="true" id="pillars-subtitle" class="text-slate-600 text-lg">ארבע שנות צמיחה (כיתות ט'–י"ב) המוקדשות לעמל התורה, לבירור האמונה ולבניית מידות טובות</p>
+                <h2 data-editable="true" id="pillars-title" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy">תוכנית הלימודים, התפילה והעשייה</h2>
+                <p data-editable="true" id="pillars-subtitle" class="text-slate-600 text-lg">ארבע שנות צמיחה (כיתות ט'–י"ב) של שקידה בתורה, זריזות בעבודת ה' ופיתוח כישרונות</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -337,12 +344,12 @@
                         </div>
                         <h3 data-editable="true" id="pillar-1-title" class="font-serif text-2xl font-bold text-yeshiva-navy mb-3">גמרא ומשנה: זרעים ומועד</h3>
                         <p data-editable="true" id="pillar-1-desc" class="text-slate-600 leading-relaxed mb-6">
-                            לימוד מעמיק ויסודי בגמרא ובמשנה מתוך חבורות וחברותות, עם דגש מיוחד על סדרי זרעים ומועד המחברים את התלמיד לקדושת הזמן ולקדושת הארץ.
+                            לימוד מעמיק ויסודי בגמרא ובמשנה בעיון ובבקיאות, עם דגש ייחודי על סדרי זרעים ומועד ומסכתות אורח חיים כדרכו בקודש של הרב מרדכי אליהו זצ"ל.
                         </p>
                     </div>
                     <ul class="space-y-2 text-sm text-slate-700 border-t border-slate-200 pt-4">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-1-li1">עיון ובקיאות בסדרי זרעים ומועד</span></li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-1-li2">שינון משניות והלכה למעשה</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-1-li1">השלמת מעל 11 מסכתות בעיון ובבקיאות</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-1-li2">דגש מיוחד על סדרי זרעים ומועד</span></li>
                         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-1-li3">קניית כלים ללימוד עצמאי פורה</span></li>
                     </ul>
                 </div>
@@ -353,33 +360,33 @@
                         <div class="w-14 h-14 rounded-2xl bg-yeshiva-gold text-yeshiva-navy flex items-center justify-center mb-6 shadow-md">
                             <i data-lucide="flame" class="w-7 h-7"></i>
                         </div>
-                        <h3 data-editable="true" id="pillar-2-title" class="font-serif text-2xl font-bold text-white mb-3">תנ"ך, אמונה, מוסר וחסידות</h3>
+                        <h3 data-editable="true" id="pillar-2-title" class="font-serif text-2xl font-bold text-white mb-3">אמונה, תפילה, מוסר וחסידות</h3>
                         <p data-editable="true" id="pillar-2-desc" class="text-slate-300 leading-relaxed mb-6">
-                            מעטפת רוחנית שלמה המרוממת את הנפש ומאירה את הדעת: שיעורים סדורים בתנ"ך, בכתבי האמונה של תורת ארץ ישראל, ובספרי מוסר וחסידות.
+                            עבודת ה' מתוך שמחה וזריזות: שיעורי תנ"ך, אמונה, מוסר וחסידות, לצד שני מנייני שחרית מדי יום – מניין ותיקין עם תוכנית לימוד מיוחדת ומניין בשעה 7:00.
                         </p>
                     </div>
                     <ul class="space-y-2 text-sm text-slate-200 border-t border-white/10 pt-4">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-2-li1">שיעורי אמונה ומחשבת ישראל</span></li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-2-li2">לימוד תנ"ך מתוך מבט גאולי</span></li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-2-li3">עבודת המידות, מוסר וחסידות</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-2-li1">מניין ותיקין ותוכנית לימוד ייחודית לאחריו</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-2-li2">שיעורים סדורים בתנ"ך, אמונה וחסידות</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-2-li3">ליווי צמוד מאברכי הכולל והישיבה הגבוהה</span></li>
                     </ul>
                 </div>
 
-                <!-- כרטיס 3: אווירה משפחתית ודרך ארץ -->
+                <!-- כרטיס 3: חוגי העשרה והווי ישיבתי -->
                 <div class="bg-yeshiva-sand rounded-3xl p-8 border border-slate-200/70 hover:shadow-xl transition duration-300 flex flex-col justify-between">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-yeshiva-navy text-yeshiva-gold flex items-center justify-center mb-6 shadow-md">
-                            <i data-lucide="users" class="w-7 h-7"></i>
+                            <i data-lucide="hammer" class="w-7 h-7"></i>
                         </div>
-                        <h3 data-editable="true" id="pillar-3-title" class="font-serif text-2xl font-bold text-yeshiva-navy mb-3">הווי ישיבתי ואהבת הארץ</h3>
+                        <h3 data-editable="true" id="pillar-3-title" class="font-serif text-2xl font-bold text-yeshiva-navy mb-3">חוגי מלאכה, יצירה והווי</h3>
                         <p data-editable="true" id="pillar-3-desc" class="text-slate-600 leading-relaxed mb-6">
-                            חיי חברה מגובשים באווירה הפסטורלית של כוכב השחר שבארץ בנימין, ליווי אישי חם לכל תלמיד מכיתה ט' ועד י"ב, טיולים ושבתות ישיבה.
+                            לצד השקידה בתורה בשעות היום, התלמידים משתתפים בחוגים מעשיים ומגוונים המפתחים כישורים, מיקוד ושמחת חיים באווירה המשפחתית של כוכב השחר.
                         </p>
                     </div>
                     <ul class="space-y-2 text-sm text-slate-700 border-t border-slate-200 pt-4">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-3-li1">קשר קרוב ואישי עם צוות הר"מים</span></li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-3-li2">טיולים ומסעות בארץ בנימין ובארץ</span></li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-3-li3">הכנה מיטבית לישיבות הגבוהות וההסדר</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-3-li1">כתיבת סת"ם ובנייה בעץ</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-3-li2">חדר מוזיקה ונגינה</span></li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yeshiva-gold"></i> <span data-editable="true" id="pillar-3-li3">קרב מגע, טיולים ושבתות ישיבה</span></li>
                     </ul>
                 </div>
             </div>
@@ -469,10 +476,10 @@
                 <div class="lg:col-span-8 space-y-4 text-center lg:text-right">
                     <span class="text-yeshiva-gold font-bold text-sm uppercase tracking-wider">דבר ראש הישיבה</span>
                     <blockquote data-editable="true" id="rosh-quote" class="font-serif text-2xl sm:text-3xl leading-relaxed text-slate-100 italic">
-                        "[כאן מזינים ציטוט מרכזי או מסר אישי מראש הישיבה להורים ולתלמידים המתעניינים – על האמון בכל נער, השמחה שבעבודת ה' והשאיפה לבנות דור של תלמידי חכמים המעורבים בחיי המעשה.]"
+                        "המשימה שלנו היא שבגיל הנעורים, עם כל המורכבות שבו, יעסקו בקדושה ובטהרה. אנחנו עוסקים במסכתות של אורח חיים – זהו אורו של הרב מרדכי אליהו זצ"ל."
                     </blockquote>
                     <p data-editable="true" id="rosh-subtext" class="text-slate-300 text-base leading-relaxed pt-2">
-                        [פסקה משלימה קצרה המזמינה את ההורים והתלמידים לבוא, להתרשם מהאווירה ולהיות חלק ממשפחת הישיבה.]
+                        "אחי ורעי, היו שותפים להקמת התורה לבני הנעורים. נשתדל להידבק מעט באורו הגדול של מרן זצ"ל ושל שאר גדולי ישראל, בשקידתו ובשמחתו בלימוד התורה, באצילותו ובחסידותו הרוממה, במידותיו התרומיות ובעבודת ה' שלו המחוברת עם עמנו היקר וארצנו הקדושה."
                     </p>
                 </div>
             </div>
@@ -492,9 +499,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- תמונה 1 -->
             <div class="relative group rounded-2xl overflow-hidden shadow-md aspect-square bg-slate-200">
-                <img id="gal-1" src="https://placehold.co/500x500/0f294a/ffffff?text=תמונה+1:+בית+המדרש" alt="גלריה 1" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <img id="gal-1" src="https://placehold.co/500x500/0f294a/ffffff?text=בית+המדרש+החדש" alt="גלריה 1" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
-                    <span data-editable="true" id="gal-1-cap" class="text-white font-medium text-sm">[לימוד בחברותא בבית המדרש]</span>
+                    <span data-editable="true" id="gal-1-cap" class="text-white font-medium text-sm">לימוד בחברותא בבית המדרש החדש</span>
                 </div>
                 <div onclick="openImageModal('gal-1')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/75 flex items-center justify-center cursor-pointer transition">
                     <span class="bg-yeshiva-gold text-yeshiva-navy font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2"><i data-lucide="image" class="w-4 h-4"></i> החלף תמונה</span>
@@ -503,9 +510,9 @@
 
             <!-- תמונה 2 -->
             <div class="relative group rounded-2xl overflow-hidden shadow-md aspect-square bg-slate-200">
-                <img id="gal-2" src="https://placehold.co/500x500/1e3a5f/ffffff?text=תמונה+2:+טיולים+ומסעות" alt="גלריה 2" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <img id="gal-2" src="https://placehold.co/500x500/1e3a5f/ffffff?text=כתיבת+סת%22ם+ובנייה+בעץ" alt="גלריה 2" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
-                    <span data-editable="true" id="gal-2-cap" class="text-white font-medium text-sm">[מסע שנתי בשבילי הארץ]</span>
+                    <span data-editable="true" id="gal-2-cap" class="text-white font-medium text-sm">חוגי העשרה: כתיבת סת"ם ובנייה בעץ</span>
                 </div>
                 <div onclick="openImageModal('gal-2')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/75 flex items-center justify-center cursor-pointer transition">
                     <span class="bg-yeshiva-gold text-yeshiva-navy font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2"><i data-lucide="image" class="w-4 h-4"></i> החלף תמונה</span>
@@ -514,9 +521,9 @@
 
             <!-- תמונה 3 -->
             <div class="relative group rounded-2xl overflow-hidden shadow-md aspect-square bg-slate-200">
-                <img id="gal-3" src="https://placehold.co/500x500/2c4c75/ffffff?text=תמונה+3:+מעבדות+ומדע" alt="גלריה 3" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <img id="gal-3" src="https://placehold.co/500x500/2c4c75/ffffff?text=חדר+מוזיקה+וקרב+מגע" alt="גלריה 3" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
-                    <span data-editable="true" id="gal-3-cap" class="text-white font-medium text-sm">[מצוינות במעבדות המדעים]</span>
+                    <span data-editable="true" id="gal-3-cap" class="text-white font-medium text-sm">נגינה בחדר המוזיקה וקרב מגע</span>
                 </div>
                 <div onclick="openImageModal('gal-3')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/75 flex items-center justify-center cursor-pointer transition">
                     <span class="bg-yeshiva-gold text-yeshiva-navy font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2"><i data-lucide="image" class="w-4 h-4"></i> החלף תמונה</span>
@@ -525,9 +532,9 @@
 
             <!-- תמונה 4 -->
             <div class="relative group rounded-2xl overflow-hidden shadow-md aspect-square bg-slate-200">
-                <img id="gal-4" src="https://placehold.co/500x500/3b5d8a/ffffff?text=תמונה+4:+שבתות+והווי" alt="גלריה 4" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <img id="gal-4" src="https://placehold.co/500x500/3b5d8a/ffffff?text=מניין+ותיקין+בכוכב+השחר" alt="גלריה 4" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
-                    <span data-editable="true" id="gal-4-cap" class="text-white font-medium text-sm">[התוועדות ושיח חברים]</span>
+                    <span data-editable="true" id="gal-4-cap" class="text-white font-medium text-sm">תפילת ותיקין מתוך זריזות ושמחה</span>
                 </div>
                 <div onclick="openImageModal('gal-4')" class="image-placeholder-overlay opacity-0 group-hover:opacity-100 absolute inset-0 bg-yeshiva-navy/75 flex items-center justify-center cursor-pointer transition">
                     <span class="bg-yeshiva-gold text-yeshiva-navy font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2"><i data-lucide="image" class="w-4 h-4"></i> החלף תמונה</span>
@@ -547,7 +554,7 @@
                         <span class="text-yeshiva-gold font-bold tracking-wider uppercase text-sm">נשמח להכיר</span>
                         <h2 data-editable="true" id="contact-title" class="font-serif text-3xl sm:text-4xl font-bold text-yeshiva-navy mt-1">יצירת קשר ותיאום ביקור</h2>
                         <p data-editable="true" id="contact-subtitle" class="text-slate-600 mt-3 leading-relaxed">
-                            [השאירו פרטים ונציג מצוות הרישום יחזור אליכם בהקדם לתיאום פגישה אישית, סיור בישיבה ומענה על כל שאלה.]
+                            הורים ותלמידים יקרים, נשמח לארח אתכם בבית המדרש החדש בכוכב השחר, להכיר מקרוב את סדרי הלימוד ולענות על כל שאלה.
                         </p>
                     </div>
 
@@ -558,7 +565,37 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-yeshiva-navy">כתובת הישיבה</h4>
-                                <p data-editable="true" id="contact-address" class="text-slate-600 text-sm">איזור התעשיה 1, כוכב השחר, ארץ בנימין</p>
+                                <a href="https://maps.app.goo.gl/GFueP2sFW9oKNaGB7" target="_blank" rel="noopener noreferrer" data-editable="true" id="contact-address" class="text-slate-600 hover:text-yeshiva-navy hover:underline text-sm inline-flex items-center gap-1 transition">איזור התעשיה 1, כוכב השחר, ארץ בנימין</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-yeshiva-sand border border-slate-100">
+                            <div class="w-11 h-11 rounded-xl bg-yeshiva-navy text-yeshiva-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="user-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-yeshiva-navy">איש קשר ורישום</h4>
+                                <p data-editable="true" id="contact-person" class="text-slate-600 text-sm font-medium">מנחם גולדשטיין</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-yeshiva-sand border border-slate-100">
+                            <div class="w-11 h-11 rounded-xl bg-yeshiva-navy text-yeshiva-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-yeshiva-navy">טלפון ליצירת קשר</h4>
+                                <p data-editable="true" id="contact-phone" class="text-slate-600 text-sm text-right" dir="ltr">055-6801646</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-yeshiva-sand border border-slate-100">
+                            <div class="w-11 h-11 rounded-xl bg-yeshiva-navy text-yeshiva-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-yeshiva-navy">דואר אלקטרוני</h4>
+                                <a href="mailto:ykom052@gmail.com" data-editable="true" id="contact-email" class="text-slate-600 hover:text-yeshiva-navy hover:underline text-sm transition">ykom052@gmail.com</a>
                             </div>
                         </div>
 
